@@ -63,3 +63,5 @@ The program generates two JSON arrays:
 4. Calculate the total amount spent and the number of orders for each customer.
 5. Generate the customer summary and error messages.
 6. Print the output JSON arrays.
+ 
+ The project also includes publishing the customer messages and error messages using message queuing protocols such as AMQP, MQTT, and SQS.
