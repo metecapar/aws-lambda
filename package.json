@@ -24,8 +24,13 @@
     "@aws-cdk/aws-s3-notifications": "^1.198.1",
     "@aws-cdk/aws-sqs": "^1.198.1",
     "@aws-cdk/core": "^1.198.1",
+    "amqplib": "^0.10.3",
     "aws-cdk-lib": "2.73.0",
     "constructs": "^10.0.0",
+    "csv-parser": "^3.0.0",
+    "fs": "^0.0.1-security",
+    "lodash": "^4.17.21",
+    "moment": "^2.29.4",
     "source-map-support": "^0.5.21"
   }
 }
