@@ -23,7 +23,7 @@ def lambda_handler(event, context):
     items_file = f"items_{file_date}.csv"
 
     s3 = boto3.client('s3')
-    bucketName = ''
+    bucketName = 'mt-data-collection-dev'
     getCustomerCSV = s3.get_object(Bucket=bucketName, Key=customer_file)
     getOrdersCSV = s3.get_object(Bucket=bucketName, Key=orders_file)
     getItemsCSV = s3.get_object(Bucket=bucketName, Key=items_file)
