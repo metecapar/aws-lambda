@@ -14,7 +14,7 @@ export class basicLambdaStack extends cdk.Stack{
     // Initialization of the lambda function
     this.lambdaFunction = new lambda.Function(this, function_name, {
         functionName: function_name,
-        runtime: lambda.Runtime.PYTHON_3_9,
+        runtime: lambda.Runtime.PYTHON_3_8,
         code: lambda.Code.fromAsset(lambda_path),
         handler: "lambda_function.lambda_handler"
     });

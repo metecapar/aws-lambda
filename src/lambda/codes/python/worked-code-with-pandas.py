@@ -3,12 +3,7 @@ from io import StringIO
 import json
 import boto3
 import logging
-import csv
-
-
-def read_csv(file_obj):
-    csv_reader = csv.DictReader(file_obj)
-    return [row for row in csv_reader]
+import pandas as pd
 
 logger = logging.getLogger()
 logger.setLevel(logging.DEBUG)
@@ -96,7 +91,7 @@ def lambda_handler(event, context):
 
     # Publish results to Amazon SQS
     sqs = boto3.resource('sqs')
-    queue_url = 'https://sqs.us-west-1.amazonaws.com/813334080301/sqs-mete-meteparserqueueE077929E-IrKAPUgO1Kvb'
+    queue_url = ''
 
     # Send customer messages
     customer_messages = customer_summary.to_dict(orient='records')
