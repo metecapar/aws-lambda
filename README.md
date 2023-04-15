@@ -66,7 +66,7 @@ The project is implemented in both JavaScript (Node.js) and Python. The main log
 
 The project also includes publishing the customer messages and error messages using message queuing protocols such as AMQP, MQTT, and SQS. You can find the code for this in the /src/codes/ directory.
 
-Deployment
+## Deployment
 
 To deploy this project, follow these steps:
 
@@ -74,7 +74,7 @@ To deploy this project, follow these steps:
 2. Once your local machine is configured for AWS, run `npm install` to install the necessary dependencies.
 3. Run `npm run build` to build the project. This will create a build folder that contains the compiled JavaScript code.
 4. Run `cdk synth` to generate a CloudFormation template that describes the AWS resources that need to be created for this project.
-5. Run `cdk deploy s3bucket-mete sqs-mete` to deploy the AWS resources defined in the CloudFormation template. This will create an S3 bucket and an SQS queue.
+5. Run `cdk deploy s3bucket-mete sqs-mete` to deploy the AWS resources defined in the CloudFormation template. This will create an S3 bucket with Lambda and an SQS queue.
 6. In your Lambda function code, you can choose which message queue stack to use: AMQP, MQTT, or SQS. You will need to configure your Lambda function to read from the appropriate message queue stack.
 7. Publish the customer messages and error messages to the message queue stack of your choice. The customer messages should be in the following format:
 
