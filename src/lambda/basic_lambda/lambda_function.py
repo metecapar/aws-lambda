@@ -85,8 +85,9 @@ def read_csv_from_s3(s3, bucket, key):
         content = StringIO(response['Body'].read().decode('utf-8'))
         reader = csv.DictReader(content)
         return [row for row in reader]
-    except:
-        logger.error("Error while reading from s3")
+    except Exception as e:
+        logger.error(f"Error while reading CSV '{key}' from bucket '{bucket}': {e}")
+        return None
 
 logger = logging.getLogger()
 logger.setLevel(logging.DEBUG)
@@ -102,16 +103,12 @@ def lambda_handler(event, context):
     customer_file = f"customers_{file_date}.csv"
     orders_file = f"orders_{file_date}.csv"
     items_file = f"items_{file_date}.csv"
-    session = boto3.Session(
-    aws_access_key_id='',
-    aws_secret_access_key='',   
-    )
-    s3 = session.resource('s3')
+    s3 = boto3.client('s3')
     bucketName = 'mete-bucket-55'
     customers = read_csv_from_s3(s3, bucketName, customer_file)
     orders = read_csv_from_s3(s3, bucketName, orders_file)
     items = read_csv_from_s3(s3, bucketName, items_file)
-        
+    
     customer_dict = {c["customer_reference"]: c for c in customers}
     order_dict = {o["order_reference"]: o for o in orders}
     order_item_dict = defaultdict(list)

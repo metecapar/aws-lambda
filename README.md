@@ -108,3 +108,11 @@ To deploy this project, follow these steps:
     }
 
 And that's it! Once you've completed these steps, you should be able to send messages to the message queue and have them processed by the Lambda function.
+
+
+If you want to confirm that your IAM role has permission to read data from an S3 bucket, you can follow these steps:
+
+Log in to the AWS console and navigate to the IAM page.
+Locate the role associated with your Lambda functions.
+Check that there is an inline policy in place allowing the role to read data from an S3 bucket.
+Once you have confirmed that this policy exists, you can proceed to run the entire project with confidence.

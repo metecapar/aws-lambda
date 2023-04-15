@@ -23,6 +23,7 @@ export class basicLambdaStack extends cdk.Stack{
         functionName: function_name,
         runtime: lambda.Runtime.PYTHON_3_8,
         code: lambda.Code.fromAsset(lambda_path),
+        timeout: cdk.Duration.minutes(5),
         handler: "lambda_function.lambda_handler",
         layers: [layer]
     });
