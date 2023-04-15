@@ -61,7 +61,7 @@ def mqttSender(status, record):
 def sqsSender(status, messageSQS):
     # Publish results to Amazon SQS
     sqs = boto3.resource('sqs')
-    queue_url = 'https://sqs.us-west-1.amazonaws.com/813334080301/sqs-mete-meteparserqueueE077929E-IrKAPUgO1Kvb'
+    queue_url = ''
 
     if status == 1:
         sqs_message = {
