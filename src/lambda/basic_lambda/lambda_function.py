@@ -102,8 +102,11 @@ def lambda_handler(event, context):
     customer_file = f"customers_{file_date}.csv"
     orders_file = f"orders_{file_date}.csv"
     items_file = f"items_{file_date}.csv"
-
-    s3 = boto3.client('s3')
+    session = boto3.Session(
+    aws_access_key_id='',
+    aws_secret_access_key='',   
+    )
+    s3 = session.resource('s3')
     bucketName = 'mete-bucket-55'
     customers = read_csv_from_s3(s3, bucketName, customer_file)
     orders = read_csv_from_s3(s3, bucketName, orders_file)

@@ -53,6 +53,21 @@ The program generates two JSON arrays:
      "message": "Error description"
    }
 
+
+## Export Libraries
+
+Create a new folder on your shell to hold the Python libraries you want to use in your Lambda function.
+   mkdir my-lambda-layer
+   cd my-lambda-layer
+
+Next, install the Python libraries you need using pip3.8. The -t option specifies the target directory where the libraries will be installed.
+   pip3.8 install <python libraries> -t .
+
+Zip the Folder
+   Once the libraries are installed, zip the contents of the folder.
+   zip -r my-lambda-layer.zip .
+
+
 ## Implementation
 
 The project is implemented in both JavaScript (Node.js) and Python. The main logic is the same for both implementations:
@@ -63,6 +78,7 @@ The project is implemented in both JavaScript (Node.js) and Python. The main log
 4. Calculate the total amount spent and the number of orders for each customer.
 5. Generate the customer summary and error messages.
 6. Print the output JSON arrays.
+7. You need to add Python libraries to your AWS Lambda. To do that read the Export Libraries Section
 
 The project also includes publishing the customer messages and error messages using message queuing protocols such as AMQP, MQTT, and SQS. You can find the code for this in the /src/codes/ directory.
 
