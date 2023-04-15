@@ -54,15 +54,41 @@ The program generates two JSON arrays:
    }
 
 ## Implementation
- 
- The project is implemented in both JavaScript (Node.js) and Python. The main logic is the same for both implementations:
+
+The project is implemented in both JavaScript (Node.js) and Python. The main logic is the same for both implementations:
 
 1. Read the input data from the CSV files.
-2. Merge the data from the orders and customers files based on the `customer_reference`.
-3. Merge the data from the orders and items files based on the `order_reference`.
+2. Merge the data from the orders and customers files based on the customer_reference.
+3. Merge the data from the orders and items files based on the order_reference.
 4. Calculate the total amount spent and the number of orders for each customer.
 5. Generate the customer summary and error messages.
 6. Print the output JSON arrays.
- 
- The project also includes publishing the customer messages and error messages using message queuing protocols such as AMQP, MQTT, and SQS.
- You can find these code in this path "/src/codes/"
+
+The project also includes publishing the customer messages and error messages using message queuing protocols such as AMQP, MQTT, and SQS. You can find the code for this in the /src/codes/ directory.
+
+Deployment
+
+To deploy this project, follow these steps:
+
+1. Run the `aws configure` command and configure your local PC for AWS. This will involve providing your AWS access key ID, secret access key, default region, and output format. This will allow your local machine to interact with AWS resources.
+2. Once your local machine is configured for AWS, run `npm install` to install the necessary dependencies.
+3. Run `npm run build` to build the project. This will create a build folder that contains the compiled JavaScript code.
+4. Run `cdk synth` to generate a CloudFormation template that describes the AWS resources that need to be created for this project.
+5. Run `cdk deploy s3bucket-mete sqs-mete` to deploy the AWS resources defined in the CloudFormation template. This will create an S3 bucket and an SQS queue.
+6. In your Lambda function code, you can choose which message queue stack to use: AMQP, MQTT, or SQS. You will need to configure your Lambda function to read from the appropriate message queue stack.
+7. Publish the customer messages and error messages to the message queue stack of your choice. The customer messages should be in the following format:
+
+    {
+        "customer_reference": "<customer_reference>",
+        "total_amount_spent": <total_amount_spent>,
+        "number_of_orders": <number_of_orders>
+    }
+
+8. The error messages should be in the following format:
+
+    {
+        "customer_reference": "<customer_reference>",
+        "error_message": "<error_message>"
+    }
+
+And that's it! Once you've completed these steps, you should be able to send messages to the message queue and have them processed by the Lambda function.

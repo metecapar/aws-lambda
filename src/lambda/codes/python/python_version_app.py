@@ -9,6 +9,7 @@ file_date = datetime.datetime.now().strftime("%d%m%Y")
 customer_file = f"customers_{file_date}.csv"
 orders_file = f"orders_{file_date}.csv"
 items_file = f"items_{file_date}.csv"
+
 try:
 # Read CSV files
     customers_df = pd.read_csv(customer_file)

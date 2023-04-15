@@ -16,9 +16,9 @@ export class S3BucketStack extends cdk.Stack {
     super(scope, id, props);
 
     // The code that defines your stack goes here
-    this.bucket = new s3.Bucket(this, "mt-data-collection-dev",{
+    this.bucket = new s3.Bucket(this, "mete-bucket-55",{
       versioned: false,
-      bucketName: "mt-data-collection-dev",
+      bucketName: "mete-bucket-55",
       publicReadAccess: false,
       blockPublicAccess: s3.BlockPublicAccess.BLOCK_ALL,
       removalPolicy: cdk.RemovalPolicy.DESTROY
